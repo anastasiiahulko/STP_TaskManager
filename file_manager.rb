@@ -1,35 +1,39 @@
 # frozen_string_literal: true
 
 require 'csv'
+require_relative 'constants'
 
 # An abstract class for managing file tasks
 class FileManager
-	def initialize
-		raise NotImplementedError, 'Abstract class cannot be instantiated'
-	end
-
-	def update_tasks_from_file
-		raise NotImplementedError, 'Method not implemented in subclass'
-	end
-
-	def write_tasks_to_file(max_sum_priority, managed_task_list)
-		raise NotImplementedError, 'Method not implemented in subclass'
-	end
-end
-
-# Class that inherits the abstract FileManager and implements the methods
-class TaskFileManager < FileManager
-	attr_reader :total_resources, :data_rows
+	@file_path = Constants::DEFAULT_FILE_INPUT_PATH
+	@output_file_path = Constants::DEFAULT_FILE_OUTPUT_PATH
+	@total_resources = 0
+	@data_rows = []
 
 	def initialize
-		super
-		@file_path = 'task.txt'
-		@output_file_path = 'managed_tasks.csv'
-		@total_resources = 0
-		@data_rows = []
+		raise NotImplementedError
 	end
 
-	def update_tasks_from_file
+	def update_tasks_from_file # rubocop:disable Metrics/MethodLength
+		file = open_and_validate_file(@file_path)
+		return unless file
+
+		first_line = file.readline
+		@total_resources = first_line.split(':')[1].to_i
+
+		file.readline
+
+		CSV.foreach(@file_path, headers: true, col_sep: ',') do |row|
+			@data_rows << {
+				start: row['start'].to_i,
+				end: row['end'].to_i,
+				priority: row['priority'].to_i,
+				resources: row['resorces'].to_i
+			}
+		end
+	end
+
+	def open_and_validate_file(file_path)
 		unless File.exist?(@file_path)
 			puts Constants::FILE_NOT_FOUND
 			return
@@ -40,30 +44,10 @@ class TaskFileManager < FileManager
 			return
 		end
 
-		unless File.broken?(@file_path)
-			puts Constants::FILE_BROKEN
-			return
-		end
-
-		File.open(@file_path, 'r') do |file|
-			puts 'файл відкрито'
-			first_line = file.readline
-			@total_resources = first_line.split(':')[1].to_i
-
-			file.readline
-
-			CSV.foreach(@file_path, headers: true, col_sep: ',') do |row|
-				@data_rows << {
-					start: row['start'].to_i,
-					end: row['end'].to_i,
-					priority: row['priority'].to_i,
-					resources: row['resorces'].to_i
-				}
-			end
-		end
+		File.open(file_path, 'r')
 	end
 
-	def write_tasks_to_file(max_sum_priority, managed_task_list)
+	def write_tasks_to_file(max_sum_priority, managed_task_list) # rubocop:disable Metrics/MethodLength
 		unless File.writable?(File.dirname(@output_file_path))
 			puts Constants::FILE_NOT_WRITABLE
 			return
