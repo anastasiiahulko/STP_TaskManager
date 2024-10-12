@@ -5,6 +5,8 @@ require_relative 'constants'
 
 # An abstract class for managing file tasks
 class FileManager
+	attr_reader :total_resources, :data_rows
+
 	@file_path = Constants::DEFAULT_FILE_INPUT_PATH
 	@output_file_path = Constants::DEFAULT_FILE_OUTPUT_PATH
 	@total_resources = 0
@@ -12,6 +14,20 @@ class FileManager
 
 	def initialize
 		raise NotImplementedError
+	end
+
+	def open_and_validate_file(file_path)
+		unless File.exist?(@file_path)
+			puts Constants::FILE_NOT_FOUND
+			return
+		end
+
+		unless File.readable?(@file_path)
+			puts Constants::FILE_NOT_READABLE
+			return
+		end
+
+		File.open(file_path, 'r')
 	end
 
 	def update_tasks_from_file # rubocop:disable Metrics/MethodLength
@@ -31,20 +47,6 @@ class FileManager
 				resources: row['resorces'].to_i
 			}
 		end
-	end
-
-	def open_and_validate_file(file_path)
-		unless File.exist?(@file_path)
-			puts Constants::FILE_NOT_FOUND
-			return
-		end
-
-		unless File.readable?(@file_path)
-			puts Constants::FILE_NOT_READABLE
-			return
-		end
-
-		File.open(file_path, 'r')
 	end
 
 	def write_tasks_to_file(max_sum_priority, managed_task_list) # rubocop:disable Metrics/MethodLength
