@@ -27,6 +27,7 @@ class TaskList
 		sum_priority += sum_tasks_priority(performed_tasks)
 
 		best_valid_combinations_result_tasks(t_start, t_end, free_resources, result, sum_priority)
+		result.reject! { |arr| arr.empty? or arr.include?(nil) }
 	end
 	# rubocop:enable Metrics/ParameterLists
 
