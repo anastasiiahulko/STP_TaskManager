@@ -27,7 +27,6 @@ class TaskList
 		sum_priority += sum_tasks_priority(performed_tasks)
 
 		best_valid_combinations_result_tasks(t_start, t_end, free_resources, result, sum_priority)
-		result.reject! { |arr| arr.empty? or arr.include?(nil) }
 	end
 	# rubocop:enable Metrics/ParameterLists
 
@@ -60,7 +59,7 @@ class TaskList
 		if tmp[0] > res[0]
 			res = tmp
 		elsif tmp[0] == res[0]
-			res = tmp if tmp[1].size > res[1].size
+			res = tmp if tmp[1].reject { |arr| arr.nil? }.size > res[1].reject { |arr| arr.nil? }.size
 		end
 
 		res
