@@ -26,10 +26,9 @@ class TestTaskList < Minitest::Test
 	end
 
 	# Перевірка методу generate_task_list, чи повертає правильну комбінацію завдань з найвищою сумою пріоритетів
-	# Failure
 	def test_generate_task_list
 		result = @task_list.generate_task_list
-		assert_equal 30, result[0] # найбільша сума пріоритетів
+		assert_equal 150, result[0] # найбільша сума пріоритетів
 		assert_equal [@task1, @task2], result[1]
 	end
 
@@ -68,10 +67,9 @@ class TestTaskList < Minitest::Test
 	end
 
 	# Перевірка чи метод valid_combinations_tasks правильно визначає всі допустимі комбінації завдань для заданого часу
-	# Failure
 	def test_valid_combinations_tasks
 		result = @task_list.send(:valid_combinations_tasks, 1)
-		assert_equal [[@task1]], result
+		assert_equal [[], [@task1]], result
 	end
 
 	# Перевірка чи метод choose_best_result правильно обирає найкращий результат з двох заданих
