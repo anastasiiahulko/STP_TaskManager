@@ -9,7 +9,6 @@ require_relative 'task_list'
 # testing class Program
 class MainProgramTest < Minitest::Test
 	def setup # rubocop:disable Metrics/MethodLength
-		# Заміняємо стандартний вивід на StringIO
 		@output = StringIO.new
 		@original_stdout = $stdout
 		$stdout = @output
