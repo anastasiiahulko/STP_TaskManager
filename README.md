@@ -16,8 +16,8 @@ The program takes the list of tasks from the file `input_tasks.csv`.
 Its structure:
 - **total_resources**: The first line defines the total available resources for task scheduling.
 - **Task details**: The subsequent lines represent the list of tasks. Each task has the following columns:
-  - `start`: The start time of the task.
-  - `end`: The end time of the task.
+  - `start`: The start time of the task (inclusive).
+  - `end`: The end time of the task (inclusive).
   - `priority`: The priority of the task (higher numbers indicate higher priority).
   - `resources`: The number of resources required to execute the task.
 
@@ -25,8 +25,8 @@ The result of the selection is written to the file `output_managed_tasks.csv`.
 Its structure:
 - **max_sum_priority**: The first line indicates the maximum sum of task priorities that were selected, which optimizes the resource allocation based on the tasks' priorities.
 - **Selected tasks**: The subsequent lines represent the list of tasks that were chosen for execution. Each task has the following columns:
-  - `start`: The start time of the task.
-  - `end`: The end time of the task.
+  - `start`: The start time of the task (inclusive).
+  - `end`: The end time of the task (inclusive).
   - `priority`: The priority of the task (higher numbers indicate higher priority).
   - `resources`: The number of resources allocated to the task.
 
