@@ -32,7 +32,7 @@ Its structure:
 
 Selection algorithm:
 
-A set of tasks is selected so that the sum of priorities for each hour of execution is maximized, if there are several such combinations, the first one with the most tasks is selected
+The program chooses a set of tasks in such a way as to maximize the total sum of priorities over the entire execution time, while not exceeding the available resources at any point in time. If there are several such combinations with the same maximum priority sum, the one with the largest number of tasks is chosen.
 
 The program supports entering the path of the input file using command line arguments.
 
@@ -52,10 +52,11 @@ start,end,priority,resorces
 6,10,7,2
 8,11,3,1
 # output_managed_tasks.csv
-max_sum_priority: 84
+max_sum_priority: 22
 start, end, priority, resorces
 0, 6, 8, 4
 4, 7, 4, 1
+6, 10, 7, 2
 8, 11, 3, 1
 
 > ruby program.rb input_tasks_v2.csv
@@ -66,7 +67,7 @@ start,end,priority,resorces
 2,6,20,1
 3,7,5,3
 # output_managed_tasks.csv
-max_sum_priority: 150
+max_sum_priority: 30
 start, end, priority, resorces
 1, 5, 10, 2
 2, 6, 20, 1
@@ -81,10 +82,11 @@ start,end,priority,resorces
 5,9,5,2
 6,10,20,3
 # output_managed_tasks.csv
-max_sum_priority: 184
+max_sum_priority: 53
 start, end, priority, resorces
 0, 2, 8, 1
 1, 4, 15, 2
+3, 6, 10, 1
 6, 10, 20, 3
 
 > ruby program.rb input_tasks_v4.csv
@@ -98,5 +100,48 @@ start,end,priority,resorces
 max_sum_priority: 0
 start, end, priority, resorces
 
+> ruby program.rb input_tasks_v5.csv
+# input_tasks_v5.csv
+total_resources: 3
+start,end,priority,resorces
+0,4,10,2
+1,3,20,1
+2,5,30,3
+4,6,25,2 
+# output_managed_tasks.csv
+max_sum_priority: 55
+start, end, priority, resorces
+0, 4, 10, 2
+1, 3, 20, 1
+4, 6, 25, 2
 
+> ruby program.rb input_tasks_v6.csv
+# input_tasks_v4.csv
+total_resources: 5
+start,end,priority,resorces
+0,3,8,2
+1,4,10,3
+3,5,12,2
+2,6,20,4
+5,8,18,3 
+# output_managed_tasks.csv
+max_sum_priority: 48
+start, end, priority, resorces
+0, 3, 8, 2
+1, 4, 10, 3
+3, 5, 12, 2
+5, 8, 18, 3
+
+> ruby program.rb input_tasks_v7.csv
+# input_tasks_v4.csv
+total_resources: 5
+start,end,priority,resorces
+1,4,10,3
+2,6,20,4
+8,12,18,3 
+# output_managed_tasks.csv
+max_sum_priority: 38
+start, end, priority, resorces
+2, 6, 20, 4
+8, 12, 18, 3
 ```

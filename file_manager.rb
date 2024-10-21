@@ -7,7 +7,6 @@ require_relative 'constants'
 
 # An abstract class for managing file tasks
 class FileManager
-
 	def initialize
 		raise NotImplementedError
 	end
@@ -26,7 +25,7 @@ class FileManager
 		File.open(file_path, 'r')
 	end
 
-	def self.update_tasks_from_file(file_path) # rubocop:disable Metrics/MethodLength
+	def self.update_tasks_from_file(file_path)
 		file = open_and_validate_file(file_path)
 		return unless file
 
@@ -42,7 +41,11 @@ class FileManager
 		task_list
 	end
 
-	def self.write_tasks_to_file(output_file_path, max_sum_priority, managed_task_list) # rubocop:disable Metrics/MethodLength
+	def self.write_tasks_to_file(output_file_path, result) # Передаємо результат як один параметр # rubocop:disable Metrics/MethodLength
+		# Розділяємо результат на частини
+		max_sum_priority = result[0]
+		managed_task_list = result[1]
+
 		unless File.writable?(File.dirname(output_file_path))
 			puts("#{Constants::FILE_NOT_WRITABLE} File: #{output_file_path}")
 			return
@@ -50,13 +53,13 @@ class FileManager
 
 		File.open(output_file_path, 'w') do |file|
 			file.puts "max_sum_priority: #{max_sum_priority}"
-
 			file.puts 'start, end, priority, resorces'
 
 			managed_task_list.each do |task|
 				file.puts "#{task.t_start}, #{task.t_end}, #{task.priority}, #{task.resources}"
 			end
 		end
+
 		puts("#{Constants::RESULT} #{output_file_path}")
 	end
 end

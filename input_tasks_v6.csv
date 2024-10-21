@@ -1,0 +1,7 @@
+total_resources: 5
+start,end,priority,resorces
+0,3,8,2
+1,4,10,3
+3,5,12,2
+2,6,20,4
+5,8,18,3 

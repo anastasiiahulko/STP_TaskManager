@@ -1,2 +1,4 @@
-max_sum_priority: 0
+max_sum_priority: 38
 start, end, priority, resorces
+2, 6, 20, 4
+8, 12, 18, 3

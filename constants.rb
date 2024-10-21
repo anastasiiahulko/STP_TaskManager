@@ -9,4 +9,5 @@ module Constants
 	FILE_NOT_FOUND = "#{ERROR} File not found.".freeze
 	FILE_NOT_READABLE = "#{ERROR} File not readable.".freeze
 	FILE_NOT_WRITABLE = "#{ERROR} This file is not writable.".freeze
+	INVALID_DATA = "#{ERROR} Managed task list is not an array.".freeze
 end
