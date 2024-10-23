@@ -2,8 +2,8 @@
 
 require 'minitest/autorun'
 require 'csv'
-require_relative 'file_manager'
-require_relative 'constants'
+require_relative '../file_manager'
+require_relative '../constants'
 
 # testing class FileManager
 class TestFileManager < Minitest::Test

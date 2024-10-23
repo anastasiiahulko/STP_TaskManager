@@ -11,6 +11,10 @@ class TaskList
 		@tasks = task_list.sort_by { |t| -t.priority }
 	end
 
+	def count
+		@tasks.size
+	end
+
 	def add(task)
 		@tasks.push(task)
 		# Після додавання нового завдання, знову сортуємо список за пріоритетом

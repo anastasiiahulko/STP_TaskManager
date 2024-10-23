@@ -2,11 +2,11 @@
 
 module Constants
 	AUTHOR = '"Task Manager" by Shkilnyi V. and Gulko N. CS31'
+	VERSION = '2.0'
 	DEFAULT_FILE_INPUT_PATH = 'input_tasks.csv'
 	DEFAULT_FILE_OUTPUT_PATH = 'output_managed_tasks.csv'
-	RESULT = 'The result of the selected tasks is written to a file:'
-	ERROR = 'ERROR!!!'
-	FILE_NOT_FOUND = "#{ERROR} File not found.".freeze
-	FILE_NOT_READABLE = "#{ERROR} File not readable.".freeze
-	FILE_NOT_WRITABLE = "#{ERROR} This file is not writable.".freeze
+	BENCHMARK_FILE_OUTPUT_PATH = 'test_benchmark_results.csv'
+	BEST_FILE_INPUT_PATH = 'input_tasks_best.csv'
+	WORST_FILE_INPUT_PATH = 'input_tasks_worst.csv'
+	RANDOM_FILE_INPUT_PATH = 'input_tasks_random.csv'
 end
