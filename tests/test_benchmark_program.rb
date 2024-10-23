@@ -91,17 +91,17 @@ worst_tasks_list = FileManager.update_tasks_from_file(Constants::WORST_FILE_INPU
 
 if best_tasks_list.nil?
 	best_tasks_list = generate_best_tasks_list(dep_recursions_best, max_count, total_resources,
-													Constants::BEST_FILE_INPUT_PATH) # rubocop:disable Layout/ArgumentAlignment
+						Constants::BEST_FILE_INPUT_PATH) # rubocop:disable Layout/ArgumentAlignment
 end
 
 if worst_tasks_list.nil?
 	worst_tasks_list = generate_worst_tasks_list(dep_recursions, max_count, total_resources,
-													Constants::WORST_FILE_INPUT_PATH) # rubocop:disable Layout/ArgumentAlignment
+						Constants::WORST_FILE_INPUT_PATH) # rubocop:disable Layout/ArgumentAlignment
 end
 
 random_tasks_lists = []
 random_tasks_lists.push(generate_random_tasks_list(dep_recursions, max_count,
-													total_resources, Constants::RANDOM_FILE_INPUT_PATH)) # rubocop:disable Layout/ArgumentAlignment
+			total_resources, Constants::RANDOM_FILE_INPUT_PATH)) # rubocop:disable Layout/ArgumentAlignment
 (dep_recursions * 5).times do
 	random_tasks_lists.push(generate_random_tasks_list(dep_recursions, max_count, total_resources))
 end
