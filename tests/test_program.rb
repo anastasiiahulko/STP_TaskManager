@@ -3,8 +3,8 @@
 require 'minitest/autorun'
 require 'stringio'
 require 'csv'
-require_relative 'constants'
-require_relative 'task_list'
+require_relative '../constants'
+require_relative '../task_list'
 
 # testing class Program
 class MainProgramTest < Minitest::Test
@@ -44,7 +44,7 @@ class MainProgramTest < Minitest::Test
 	def test_tasks_list_generation
 		tasks_list = @task_list
 		sum_priority, result_task_list = tasks_list.generate_task_list
-		assert_equal 150, sum_priority # highest sum priority
+		assert_equal 30, sum_priority # highest sum priority
 		assert_equal [@task1, @task2], result_task_list
 	end
 

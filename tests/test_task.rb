@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require_relative 'task'
+require_relative '../task'
 
 # testing class Task
 class TestTask < Minitest::Test
