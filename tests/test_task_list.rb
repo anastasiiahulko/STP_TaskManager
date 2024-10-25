@@ -105,7 +105,7 @@ class TestTaskList < Minitest::Test # rubocop:disable Metrics/ClassLength
 	def test_find_valid_combinations
 		t_start = 2
 		result = []
-		expected_combinations = [[@task2], [@task3], [@task2, @task3]]
+		expected_combinations = [[@task2, @task3], [@task2], [@task3]]
 		actual_combinations = @task_list.send(:find_valid_combinations, t_start, result)
 		assert_equal expected_combinations, actual_combinations
 	end
